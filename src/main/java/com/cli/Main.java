@@ -8,13 +8,14 @@ import java.util.Map;
 
 public class Main {
 
-    private static Map<String, Plugin> commands = new HashMap<>();
 
     public static void main(String[] args) {
 
+        CommandRegistry registry = new CommandRegistry();   
+
         // Register commands manually (temporary for MVP)
-        register(new HelloCommad());
-        register(new AddCommand());
+        registry.register(new HelloCommad());
+        registry.register(new AddCommand());
 
         if (args.length == 0) {
             System.out.println("No command provided");
@@ -25,17 +26,12 @@ public class Main {
         String[] commandArgs = new String[args.length - 1];
         System.arraycopy(args, 1, commandArgs, 0, commandArgs.length);
 
-        Plugin command = commands.get(commandName);
-
-        if (command == null) {
+        if (!registry.hasCommand(commandName)) {
             System.out.println("Unknown command: " + commandName);
             return;
         }
 
+        Plugin command = registry.getCommand(commandName);
         command.execute(commandArgs);
-    }
-
-    private static void register(Plugin plugin) {
-        commands.put(plugin.getCommand(), plugin);
     }
 }
