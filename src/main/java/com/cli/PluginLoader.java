@@ -41,15 +41,20 @@ public class PluginLoader {
                         Class<?> clazz = classLoader.loadClass(className);
 
                         // Check if class implements Plugin
-                        if (Plugin.class.isAssignableFrom(clazz)
-                                && !clazz.isInterface()) {
+                        if (Plugin.class.isAssignableFrom(clazz) && !clazz.isInterface()) {
 
-                            Plugin plugin = (Plugin) clazz.getDeclaredConstructor().newInstance();
+                          if (clazz.isAnnotationPresent(Command.class)) {
 
-                            registry.register(plugin);
+                              Command commandAnnotation = clazz.getAnnotation(Command.class);
+                              String commandName = commandAnnotation.value();
 
-                            System.out.println("Registered plugin: " + plugin.getCommand());
-                        }
+                              Plugin plugin = (Plugin) clazz.getDeclaredConstructor().newInstance();
+
+                              registry.register(plugin);
+
+                              System.out.println("Registered command (annotation): " + commandName);
+                          }
+                      }
                     }
                 }
 
