@@ -1,34 +1,30 @@
 package com.cli;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class Main {
 
 
     public static void main(String[] args) {
 
-        // Step 1: Create registry
-        CommandRegistry registry = new CommandRegistry();   
-
-        // Step 2: Register built-in commands (temp for mvp)
-        // registry.register(new HelloCommad());
-        // registry.register(new AddCommand());
-
-        // Step 3: Load external plugins
+        // 1. Initialize components
+        CommandRegistry registry = new CommandRegistry();
         PluginLoader loader = new PluginLoader();
+        CLIParser parser = new CLIParser();
+        ExecutionEngine engine = new ExecutionEngine();
+
+        // Step 2: Load external plugins
         loader.loadPlugins(registry);
 
-        if (args.length == 0) {
+        // 4. Parse input
+        String commandName = parser.getCommandName(args);
+
+        if (commandName == null) {
             System.out.println("No command provided");
             return;
         }
 
-        String commandName = args[0];
-        String[] commandArgs = new String[args.length - 1];
-        System.arraycopy(args, 1, commandArgs, 0, commandArgs.length);
+        String[] commandArgs = parser.getCommandArgs(args);
 
+        // 5. Find command
         if (!registry.hasCommand(commandName)) {
             System.out.println("Unknown command: " + commandName);
             return;
@@ -36,7 +32,6 @@ public class Main {
 
         Plugin command = registry.getCommand(commandName);
 
-        ExecutionEngine engine = new ExecutionEngine();
         engine.execute(command, commandArgs);
     }
 }
