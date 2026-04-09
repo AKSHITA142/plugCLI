@@ -1,6 +1,9 @@
 package myplugin;
 
 import com.cli.Plugin;
+import com.cli.Command;
+
+@Command("add")
 
 public class AddCommand implements Plugin {
 

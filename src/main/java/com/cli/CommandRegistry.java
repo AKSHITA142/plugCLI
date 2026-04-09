@@ -7,6 +7,14 @@ public class CommandRegistry {
 
     private Map<String, Plugin> commandMap = new HashMap<>();
 
+    public void printAllCommands() {
+        System.out.println("Available commands:");
+
+        for (String cmd : commandMap.keySet()) {
+            System.out.println("- " + cmd);
+        }
+    }
+
     public void register(String commandName, Plugin plugin) {
       commandMap.put(commandName, plugin);
     }
