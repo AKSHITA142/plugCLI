@@ -1,0 +1,11 @@
+compile main java folder files(src/main/java)
+
+javac -d out (Get-ChildItem -Recurse -Filter *.java src/main/java | % { $_.FullName })
+
+building phase (comile files inside myPlugin folder which we are grually integrate with our perspective):
+
+.\build-plugin.ps1
+
+running phase:
+
+java -cp out com.cli.Main commandname arguments
