@@ -7,8 +7,8 @@ public class CommandRegistry {
 
     private Map<String, Plugin> commandMap = new HashMap<>();
 
-    public void register(Plugin plugin) {
-        commandMap.put(plugin.getCommand(), plugin);
+    public void register(String commandName, Plugin plugin) {
+      commandMap.put(commandName, plugin);
     }
 
     public Plugin getCommand(String commandName) {
