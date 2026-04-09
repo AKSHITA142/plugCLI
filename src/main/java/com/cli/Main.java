@@ -35,6 +35,8 @@ public class Main {
         }
 
         Plugin command = registry.getCommand(commandName);
-        command.execute(commandArgs);
+
+        ExecutionEngine engine = new ExecutionEngine();
+        engine.execute(command, commandArgs);
     }
 }
