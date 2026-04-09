@@ -3,7 +3,7 @@ package myplugin;
 import com.cli.Plugin;
 import com.cli.Command;
 
-@Command("hello")
+@Command(value = "hello", version = "1.0")
 
 public class HelloCommad implements Plugin {
   @Override

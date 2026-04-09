@@ -3,7 +3,7 @@ package myplugin;
 import com.cli.Plugin;
 import com.cli.Command;
 
-@Command("test")
+@Command(value = "test", version = "1.0")
 
 public class TestPlugin implements Plugin {
 

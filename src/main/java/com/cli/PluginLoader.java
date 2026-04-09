@@ -53,9 +53,11 @@ public class PluginLoader {
                               registry.register(commandName, plugin);
 
                               System.out.println("Registered command (annotation): " + commandName);
+                              String version = commandAnnotation.version();
+                              System.out.println("Loaded " + commandName + " v" + version);
                           }
                       }
-                    }
+                    } 
                 }
 
                 jarFile.close();
