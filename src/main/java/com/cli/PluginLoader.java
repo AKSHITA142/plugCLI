@@ -3,6 +3,9 @@ package com.cli;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.Enumeration;
 
 public class PluginLoader {
 
@@ -15,7 +18,6 @@ public class PluginLoader {
         }
 
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
-
         if (files == null) return;
 
         for (File file : files) {
@@ -23,8 +25,35 @@ public class PluginLoader {
                 URL[] urls = { file.toURI().toURL() };
                 URLClassLoader classLoader = new URLClassLoader(urls);
 
-                // TODO: Load classes from jar (we’ll improve later)
-                System.out.println("Loaded plugin: " + file.getName());
+                JarFile jarFile = new JarFile(file);
+                Enumeration<JarEntry> entries = jarFile.entries();
+
+                while (entries.hasMoreElements()) {
+                    JarEntry entry = entries.nextElement();
+
+                    // Only process .class files
+                    if (entry.getName().endsWith(".class")) {
+
+                        String className = entry.getName()
+                                .replace("/", ".")
+                                .replace(".class", "");
+
+                        Class<?> clazz = classLoader.loadClass(className);
+
+                        // Check if class implements Plugin
+                        if (Plugin.class.isAssignableFrom(clazz)
+                                && !clazz.isInterface()) {
+
+                            Plugin plugin = (Plugin) clazz.getDeclaredConstructor().newInstance();
+
+                            registry.register(plugin);
+
+                            System.out.println("Registered plugin: " + plugin.getCommand());
+                        }
+                    }
+                }
+
+                jarFile.close();
 
             } catch (Exception e) {
                 System.out.println("Failed to load plugin: " + file.getName());
