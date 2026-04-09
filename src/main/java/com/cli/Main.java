@@ -11,11 +11,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Step 1: Create registry
         CommandRegistry registry = new CommandRegistry();   
 
-        // Register commands manually (temporary for MVP)
+        // Step 2: Register built-in commands (temp for mvp)
         registry.register(new HelloCommad());
         registry.register(new AddCommand());
+
+        // Step 3: Load external plugins
+        PluginLoader loader = new PluginLoader();
+        loader.loadPlugins(registry);
 
         if (args.length == 0) {
             System.out.println("No command provided");
