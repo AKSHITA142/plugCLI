@@ -1,4 +1,4 @@
-package com.cli.commands;
+package myplugin;
 
 import com.cli.Plugin;
 

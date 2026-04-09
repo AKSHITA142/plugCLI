@@ -1,7 +1,5 @@
 package com.cli;
 
-import com.cli.commands.AddCommand;
-import com.cli.commands.HelloCommad;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +13,8 @@ public class Main {
         CommandRegistry registry = new CommandRegistry();   
 
         // Step 2: Register built-in commands (temp for mvp)
-        registry.register(new HelloCommad());
-        registry.register(new AddCommand());
+        // registry.register(new HelloCommad());
+        // registry.register(new AddCommand());
 
         // Step 3: Load external plugins
         PluginLoader loader = new PluginLoader();
