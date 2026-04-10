@@ -22,18 +22,18 @@ public class Main {
             return;
         }
 
-        String[] commandArgs = parser.getCommandArgs(args);
-
         if (commandName.equals("help")) {
           registry.printAllCommands();
           return;
-        }
+        }           
 
         // 5. Find command
         if (!registry.hasCommand(commandName)) {
             System.out.println("Unknown command: " + commandName);
             return;
         }
+
+        String[] commandArgs = parser.getCommandArgs(args);
 
         Plugin command = registry.getCommand(commandName);
         engine.execute(command, commandArgs);

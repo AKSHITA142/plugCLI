@@ -48,6 +48,7 @@ public class PluginLoader {
                               Command commandAnnotation = clazz.getAnnotation(Command.class);
                               String commandName = commandAnnotation.value();
 
+                              // Create object (Reflection)
                               Plugin plugin = (Plugin) clazz.getDeclaredConstructor().newInstance();
 
                               registry.register(commandName, plugin);

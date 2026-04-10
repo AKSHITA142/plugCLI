@@ -9,3 +9,18 @@ building phase (comile files inside myPlugin folder which we are grually integra
 running phase:
 
 java -cp out com.cli.Main commandname arguments
+
+
+Compile the plugin java files (referencing the main program):
+powershell
+javac -cp out -d out_plugin (Get-ChildItem -Recurse -Filter *.java src\myPlugin | % { $_.FullName })
+Step 2. Package the compiled files into a JAR:
+powershell
+& "C:\Program Files\Java\jdk-21\bin\jar.exe" cvf plugins/testplugin.jar -C out_plugin .
+A Better Way: I made a build script for you!
+Since remembering that jar.exe path and typing those commands out every time you change your plugin will get tedious, I went ahead and created a convenient build script for you!
+I created a build-plugin.ps1 file in your root folder. Now, anytime you update your plugin's code, all you have to do is type this single command in your terminal:
+powershell
+.\build-plugin.ps1
+It will automatically delete any old compiled code, re-compile all java resources inside src/myPlugin, package them correctly with jar.exe, and drop the finished .jar into the plugins/ directory instantly!
+
