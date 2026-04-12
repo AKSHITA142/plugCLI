@@ -2,15 +2,15 @@ package myplugin;
 
 import com.cli.Plugin;
 import com.cli.Command;
+import com.cli.ArgParser;
 
 @Command(
     value = "add",
-    version = "1.0",
+    version = "2.0",
     description = "Adds two integers together and prints the result",
     author = "Akshita",
-    usage = "add <number1> <number2>"
+    usage = "add <number1> <number2> [--verbose]"
 )
-
 public class AddCommand implements Plugin {
 
     @Override
@@ -20,13 +20,20 @@ public class AddCommand implements Plugin {
 
     @Override
     public void execute(String[] args) {
-        if (args.length < 2) {
-            System.out.println("Please provide two numbers");
+        ArgParser parser = new ArgParser(args);
+
+        if (parser.size() < 2) {
+            System.out.println("Usage: add <number1> <number2>");
             return;
         }
 
-        int a = Integer.parseInt(args[0]);
-        int b = Integer.parseInt(args[1]);
+        int a = parser.getInt(0);
+        int b = parser.getInt(1);
+        boolean verbose = parser.hasFlag("--verbose");
+
+        if (verbose) {
+            System.out.println("Adding " + a + " + " + b + "...");
+        }
 
         System.out.println("Result: " + (a + b));
     }
