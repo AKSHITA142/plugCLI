@@ -3,7 +3,13 @@ package myplugin;
 import com.cli.Plugin;
 import com.cli.Command;
 
-@Command(value = "add", version = "1.0")
+@Command(
+    value = "add",
+    version = "1.0",
+    description = "Adds two integers together and prints the result",
+    author = "Akshita",
+    usage = "add <number1> <number2>"
+)
 
 public class AddCommand implements Plugin {
 

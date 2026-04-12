@@ -25,7 +25,7 @@ public class Main {
         if (commandName.equals("help")) {
           registry.printAllCommands();
           return;
-        }           
+        }
 
         // 5. Find command
         if (!registry.hasCommand(commandName)) {
