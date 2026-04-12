@@ -12,9 +12,9 @@ public class CommandRegistry {
     private Map<String, Command> metadataMap = new HashMap<>();
 
     public void register(String commandName, Plugin plugin, Command metadata) {
-        commandMap.put(commandName, plugin);
-        metadataMap.put(commandName, metadata);
-    }
+    commandMap.put(commandName, plugin);
+    metadataMap.put(commandName, metadata);
+}
 
     // Overloaded version for backward compatibility (no metadata)
     public void register(String commandName, Plugin plugin) {
