@@ -1,0 +1,22 @@
+# Implementation plans (private)
+plan/
+
+# Compiled output
+out/
+out_plugin/
+target/
+
+# Plugin JARs (built locally)
+plugins/*.jar
+
+# Scaffolded test projects
+my-first-plugin/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

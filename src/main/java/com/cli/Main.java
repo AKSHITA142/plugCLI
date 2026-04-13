@@ -26,6 +26,18 @@ public class Main {
             return;
         }
 
+        // 3b. Handle init command (scaffolding a new plugin project)
+        if (commandName.equals("init")) {
+            if (args.length < 2) {
+                System.out.println("Usage: init <project-name>");
+                System.out.println("Example: init my-awesome-plugin");
+                return;
+            }
+            InitCommand init = new InitCommand();
+            init.execute(args[1]);
+            return;
+        }
+
         // 4. Handle help command
         if (commandName.equals("help")) {
             registry.printAllCommands();
