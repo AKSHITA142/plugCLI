@@ -1,0 +1,11 @@
+com\cli\ExecutionEngine.class
+com\cli\ArgParser.class
+com\cli\CommandRegistry.class
+com\cli\PluginLoader.class
+com\cli\PluginLoader$DiscoveredPlugin.class
+com\cli\Main.class
+com\cli\Plugin.class
+com\cli\CLIParser.class
+com\cli\Command.class
+com\cli\ConflictConfig.class
+com\cli\ConflictResolver.class
