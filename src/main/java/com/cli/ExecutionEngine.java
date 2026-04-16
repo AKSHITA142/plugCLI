@@ -2,19 +2,31 @@ package com.cli;
 
 public class ExecutionEngine {
 
-    public void execute(Plugin command, String[] args) {
-        try {
-            System.out.println("Executing command: " + command.getCommand());
+    private HookRegistry hookRegistry;
 
+    public ExecutionEngine() {
+        this.hookRegistry = new HookRegistry();
+    }
+
+    public HookRegistry getHookRegistry() {
+        return hookRegistry;
+    }
+
+    public void execute(Plugin command, String[] args) {
+        String commandName = command.getCommand();
+        try {
+            // Run BEFORE hooks
+            hookRegistry.runBeforeHooks(commandName, args);
+
+            // Run the actual command
             command.execute(args);
 
-            System.out.println("Execution completed");
+            // Run AFTER hooks
+            hookRegistry.runAfterHooks(commandName, args);
 
         } catch (Exception e) {
-            System.out.println("Error while executing command: " + command.getCommand());
+            System.out.println("Error executing: " + commandName);
             System.out.println("Reason: " + e.getMessage());
-
-            // Optional: print full stack trace
             e.printStackTrace();
         }
     }

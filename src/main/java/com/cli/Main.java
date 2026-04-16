@@ -15,6 +15,15 @@ public class Main {
         CLIParser parser = new CLIParser();
         ExecutionEngine engine = new ExecutionEngine();
 
+        // Register global hooks (these run before/after EVERY command)
+        engine.getHookRegistry().addGlobalBeforeHook(args2 -> {
+            System.out.println("[Hook] Command started at: " + java.time.LocalTime.now());
+        });
+
+        engine.getHookRegistry().addGlobalAfterHook(args2 -> {
+            System.out.println("[Hook] Command finished at: " + java.time.LocalTime.now());
+        });
+
         // 2. Load external plugins (reads saved choices, only asks on first run)
         loader.loadPlugins(registry);
 
