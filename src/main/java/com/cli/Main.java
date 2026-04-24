@@ -5,9 +5,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/*
+ * === OOP CONCEPTS USED ===
+ * 1. COMPOSITION        → Main "HAS-A" CommandRegistry, PluginLoader, CLIParser, ExecutionEngine —it composes multiple objects to build the application (not inheritance).
+ * 2. POLYMORPHISM       → registry.getCommand() returns a Plugin, but the actual object could be AddCommand, HelloCommad, TestPlugin, etc. (runtime polymorphism).
+ * 3. FUNCTIONAL INTERFACE (LAMBDA) → Hooks are registered using lambda expressions: args2 -> { ... } — these implement Consumer<String[]> functionally.
+ * 4. STATIC METHODS     → main(), printSwitchHint(), handleSwitch() are all static —they belong to the class, not to any instance.
+ */
 public class Main {
 
     public static void main(String[] args) {
+
+        // Check for global debug flag before anything else
+        for (String arg : args) {
+            if ("--debug".equals(arg)) {
+                PlugLogger.setDebugEnabled(true);
+                break;
+            }
+        }
 
         // 1. Initialize components
         CommandRegistry registry = new CommandRegistry();
