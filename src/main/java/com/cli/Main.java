@@ -29,6 +29,7 @@ public class Main {
         PluginLoader loader = new PluginLoader();
         CLIParser parser = new CLIParser();
         ExecutionEngine engine = new ExecutionEngine();
+        AsyncEngine asyncEngine = new AsyncEngine();
 
         // Register global hooks (these run before/after EVERY command)
         engine.getHookRegistry().addGlobalBeforeHook(args2 -> {
@@ -85,7 +86,14 @@ public class Main {
 
         String[] commandArgs = parser.getCommandArgs(args);
         Plugin command = registry.getCommand(commandName);
-        engine.execute(command, commandArgs);
+        
+        // Step 11.2 - Detect --async flag
+        ArgParser argParser = new ArgParser(args);
+        if (argParser.hasFlag("--async")) {
+            asyncEngine.executeAsync(command, commandArgs);
+        } else {
+            engine.execute(command, commandArgs);
+        }
     }
 
     /**
