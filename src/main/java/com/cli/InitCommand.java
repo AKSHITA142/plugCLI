@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InitCommand {
 
@@ -47,11 +49,25 @@ public class InitCommand {
      * the project is completely self-contained.
      */
     private void copyFrameworkJar(String projectName) {
-        // Try to find the framework JAR in common locations
-        String[] possiblePaths = {
-            "target/" + FRAMEWORK_JAR,           // Maven build output
-            FRAMEWORK_JAR,                        // Current directory
-        };
+        List<String> possiblePaths = new ArrayList<>();
+        
+        // 1. Global install location (Windows/Linux/Mac)
+        String userHome = System.getProperty("user.home");
+        possiblePaths.add(userHome + "/.plugcli/plugcli.jar");
+        
+        // 2. Development locations
+        possiblePaths.add("target/" + FRAMEWORK_JAR);
+        possiblePaths.add(FRAMEWORK_JAR);
+
+        // 3. Executing JAR location
+        try {
+            String executingJar = InitCommand.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            if (executingJar.endsWith(".jar")) {
+                possiblePaths.add(executingJar);
+            }
+        } catch (Exception e) {
+            // Ignore
+        }
 
         for (String path : possiblePaths) {
             File source = new File(path);
@@ -62,20 +78,14 @@ public class InitCommand {
                     System.out.println("  Copied: " + FRAMEWORK_JAR + " (framework)");
                     return;
                 } catch (IOException e) {
-                    System.out.println("  Warning: Could not copy " + FRAMEWORK_JAR);
+                    System.out.println("  Warning: Could not copy from " + path);
                 }
             }
         }
 
-        // If JAR not found, try to build it from out/ folder
-        File outDir = new File("out");
-        if (outDir.exists()) {
-            System.out.println("  Note: Framework JAR not found in target/");
-            System.out.println("        Run 'mvn clean package' first, then run init again.");
-            System.out.println("        Or copy " + FRAMEWORK_JAR + " into " + projectName + "/ manually.");
-        } else {
-            System.out.println("  Warning: Could not find framework JAR to copy.");
-        }
+        // If JAR not found
+        System.out.println("  Warning: Could not find framework JAR to copy.");
+        System.out.println("  Note: Please ensure PlugCLI is installed correctly or run 'mvn clean package'.");
     }
 
     private String generatePom(String projectName) {
