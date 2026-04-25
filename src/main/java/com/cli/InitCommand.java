@@ -9,7 +9,7 @@ import java.nio.file.StandardCopyOption;
 
 public class InitCommand {
 
-    private static final String FRAMEWORK_JAR = "plugcli-core-1.0.0.jar";
+    private static final String FRAMEWORK_JAR = "plugcli-core-1.1.0.jar";
 
     public void execute(String projectName) {
         System.out.println("Scaffolding new PlugCLI plugin project: " + projectName);

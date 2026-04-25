@@ -35,7 +35,7 @@ If you are building a complex plugin and want to use Maven, add PlugCLI as a dep
     <dependency>
         <groupId>io.github.akshita142</groupId>
         <artifactId>plugcli-core</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
