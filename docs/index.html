@@ -115,64 +115,101 @@
 </section>
 
 <!-- ── FEATURES ── -->
-<section id="features" class="section section-dark">
+<section id="features" class="section features-section">
   <div class="container">
     <div class="section-label">Features</div>
     <h2 class="section-title">Everything you need,<br /><span class="gradient-text">nothing you don't</span></h2>
+    <p class="section-sub">A complete toolkit for building production-grade, extensible CLI applications in Java.</p>
     <div class="features-grid">
 
-      <div class="feature-card">
-        <div class="feature-icon">🔌</div>
+      <div class="feature-card" data-color="#5b9bd5">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#1a3a5c">🔌</div>
+          <span class="fc-tag">Core</span>
+        </div>
         <h3>Dynamic Plugin Loading</h3>
         <p>Drop any JAR into the <code>plugins/</code> folder. PlugCLI auto-discovers and registers all commands at runtime — no restarts, no config edits.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">🏷️</div>
+      <div class="feature-card" data-color="#7c6fcd">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#2a1e50">🏷️</div>
+          <span class="fc-tag">API</span>
+        </div>
         <h3>Annotation-Driven API</h3>
         <p>Use the <code>@Command</code> annotation to declare your command name, version, description, author, and usage — all in one place.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
+      <div class="feature-card" data-color="#f59e0b">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#3a2800">⚡</div>
+          <span class="fc-tag">Performance</span>
+        </div>
         <h3>Async Execution</h3>
         <p>Run any command in the background by appending <code>--async</code>. Powered by Java's <code>ExecutorService</code> with built-in task management.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">🪝</div>
+      <div class="feature-card" data-color="#30d158">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#0a2e18">🪝</div>
+          <span class="fc-tag">Middleware</span>
+        </div>
         <h3>Hook / Middleware System</h3>
         <p>Register <code>before</code> and <code>after</code> hooks globally or per-command. Perfect for logging, auth, timing, and audit trails.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">⚖️</div>
+      <div class="feature-card" data-color="#ff453a">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#3a0a08">⚖️</div>
+          <span class="fc-tag">Reliability</span>
+        </div>
         <h3>Conflict Resolution</h3>
         <p>Multiple plugins registering the same command? PlugCLI detects conflicts, prompts you once, and remembers your choice forever.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">🔤</div>
+      <div class="feature-card" data-color="#5b9bd5">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#0f2a40">🔤</div>
+          <span class="fc-tag">DX</span>
+        </div>
         <h3>Command Aliases</h3>
         <p>Define short aliases in <code>plugcli.config</code>. Map <code>b → backup</code> or <code>t → test</code> — your workflow, your shortcuts.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">🛠️</div>
+      <div class="feature-card" data-color="#ffd60a">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#2e2400">🛠️</div>
+          <span class="fc-tag">Utility</span>
+        </div>
         <h3>ArgParser Utility</h3>
         <p>Built-in argument parser supports positional args, flags (<code>--verbose</code>), named args (<code>--name=Akshita</code>), and typed parsing with defaults.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">🎨</div>
+      <div class="feature-card" data-color="#bf5af2">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#2a0a40">🎨</div>
+          <span class="fc-tag">Logging</span>
+        </div>
         <h3>PlugLogger</h3>
         <p>ANSI-colored, timestamped logging out of the box. <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, and <code>DEBUG</code> levels. Enable debug with <code>--debug</code>.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon">🏗️</div>
+      <div class="feature-card" data-color="#30d158">
+        <div class="fc-top">
+          <div class="fc-icon-wrap" style="--ic:#082010">🏗️</div>
+          <span class="fc-tag">Scaffolding</span>
+        </div>
         <h3>Project Scaffolding</h3>
         <p>Run <code>plugcli init my-plugin</code> to generate a full plugin project — folder structure, sample command, build script, and pom.xml — instantly.</p>
+        <div class="fc-footer"><span class="fc-arrow">→ Learn more</span></div>
       </div>
 
     </div>

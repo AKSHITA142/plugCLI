@@ -30,6 +30,12 @@ function copyCode(id) {
   });
 }
 
+// ── FEATURE CARD COLORS ──
+// Wire --fc-color from each card's data-color attribute
+document.querySelectorAll('.feature-card[data-color]').forEach(card => {
+  card.style.setProperty('--fc-color', card.dataset.color);
+});
+
 // ── SCROLL REVEAL ──
 const revealEls = document.querySelectorAll(
   '.feature-card, .step, .api-card, .install-card, .flow-step, .cmd-table'
