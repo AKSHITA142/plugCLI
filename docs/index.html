@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlugCLI — Modular Java CLI Framework</title>
+  <meta name="description" content="PlugCLI is a lightweight, extensible Java CLI framework with dynamic plugin loading, async execution, hooks, and one-line installation." />
+  <meta property="og:title" content="PlugCLI — Build Modular Java CLIs in Minutes" />
+  <meta property="og:description" content="Install in one line. Build plugins with a single annotation. Ship powerful CLI tools with zero boilerplate." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">PlugCLI</span>
+      <span class="badge">v1.1.0</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#install">Install</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#quickstart">Quick Start</a></li>
+      <li><a href="#api">API</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="https://github.com/AKSHITA142/plugCLI" target="_blank" class="btn-nav">GitHub ↗</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-badge">🚀 Open Source · MIT License · Java 21</div>
+    <h1 class="hero-title">Build Modular Java CLIs<br /><span class="gradient-text">in Minutes</span></h1>
+    <p class="hero-sub">
+      PlugCLI is a lightweight, extensible framework for building dynamic command-line applications in Java.
+      Drop in a JAR, annotate a class, and your command is live — no configuration needed.
+    </p>
+    <div class="hero-actions">
+      <a href="#install" class="btn-primary">Get Started →</a>
+      <a href="https://github.com/AKSHITA142/plugCLI" target="_blank" class="btn-ghost">⭐ Star on GitHub</a>
+    </div>
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="terminal-title">PowerShell</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line"><span class="prompt">PS&gt;</span> <span class="cmd">iwr -useb https://raw.githubusercontent.com/AKSHITA142/plugCLI/main/install.ps1 | iex</span></div>
+        <div class="terminal-line output">Downloading framework from Maven Central...</div>
+        <div class="terminal-line output success">✅ PlugCLI installed successfully!</div>
+        <div class="terminal-line"><span class="prompt">PS&gt;</span> <span class="cmd">plugcli help</span></div>
+        <div class="terminal-line output">╔══════════════════════════════════════╗</div>
+        <div class="terminal-line output">║       AVAILABLE COMMANDS             ║</div>
+        <div class="terminal-line output">╚══════════════════════════════════════╝</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">Line to install</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">Annotation to register</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">0</span><span class="stat-label">XML config needed</span></div>
+      <div class="stat-div"></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Plugins possible</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INSTALL ── -->
+<section id="install" class="section">
+  <div class="container">
+    <div class="section-label">Installation</div>
+    <h2 class="section-title">Up and running in <span class="gradient-text">30 seconds</span></h2>
+    <p class="section-sub">One PowerShell command downloads the JAR from Maven Central and adds it to your PATH.</p>
+
+    <div class="install-card">
+      <div class="install-header">
+        <span class="install-step">Step 1 — Install the framework globally (Windows)</span>
+        <button class="copy-btn" onclick="copyCode('install-cmd')">Copy</button>
+      </div>
+      <pre class="code-block" id="install-cmd">iwr -useb https://raw.githubusercontent.com/AKSHITA142/plugCLI/main/install.ps1 | iex</pre>
+    </div>
+
+    <div class="install-card">
+      <div class="install-header">
+        <span class="install-step">Step 2 — Restart terminal, verify installation</span>
+        <button class="copy-btn" onclick="copyCode('verify-cmd')">Copy</button>
+      </div>
+      <pre class="code-block" id="verify-cmd">plugcli help</pre>
+    </div>
+
+    <div class="install-card">
+      <div class="install-header">
+        <span class="install-step">Step 3 — Or add as Maven dependency</span>
+        <button class="copy-btn" onclick="copyCode('maven-dep')">Copy</button>
+      </div>
+      <pre class="code-block" id="maven-dep">&lt;dependency&gt;
+  &lt;groupId&gt;io.github.akshita142&lt;/groupId&gt;
+  &lt;artifactId&gt;plugcli-core&lt;/artifactId&gt;
+  &lt;version&gt;1.1.0&lt;/version&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section id="features" class="section section-dark">
+  <div class="container">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything you need,<br /><span class="gradient-text">nothing you don't</span></h2>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h3>Dynamic Plugin Loading</h3>
+        <p>Drop any JAR into the <code>plugins/</code> folder. PlugCLI auto-discovers and registers all commands at runtime — no restarts, no config edits.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>Annotation-Driven API</h3>
+        <p>Use the <code>@Command</code> annotation to declare your command name, version, description, author, and usage — all in one place.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Async Execution</h3>
+        <p>Run any command in the background by appending <code>--async</code>. Powered by Java's <code>ExecutorService</code> with built-in task management.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🪝</div>
+        <h3>Hook / Middleware System</h3>
+        <p>Register <code>before</code> and <code>after</code> hooks globally or per-command. Perfect for logging, auth, timing, and audit trails.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Conflict Resolution</h3>
+        <p>Multiple plugins registering the same command? PlugCLI detects conflicts, prompts you once, and remembers your choice forever.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔤</div>
+        <h3>Command Aliases</h3>
+        <p>Define short aliases in <code>plugcli.config</code>. Map <code>b → backup</code> or <code>t → test</code> — your workflow, your shortcuts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛠️</div>
+        <h3>ArgParser Utility</h3>
+        <p>Built-in argument parser supports positional args, flags (<code>--verbose</code>), named args (<code>--name=Akshita</code>), and typed parsing with defaults.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>PlugLogger</h3>
+        <p>ANSI-colored, timestamped logging out of the box. <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, and <code>DEBUG</code> levels. Enable debug with <code>--debug</code>.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏗️</div>
+        <h3>Project Scaffolding</h3>
+        <p>Run <code>plugcli init my-plugin</code> to generate a full plugin project — folder structure, sample command, build script, and pom.xml — instantly.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── QUICK START ── -->
+<section id="quickstart" class="section">
+  <div class="container">
+    <div class="section-label">Quick Start</div>
+    <h2 class="section-title">Your first plugin in<br /><span class="gradient-text">5 steps</span></h2>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Scaffold a new plugin project</h3>
+          <p>After installing PlugCLI, navigate to any empty folder and run:</p>
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode('step1')">Copy</button>
+            <pre class="code-block" id="step1">plugcli init my-awesome-plugin</pre>
+          </div>
+          <p class="step-note">This creates the entire folder structure, a sample command, build script, and README instantly.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Write your command class</h3>
+          <p>Open <code>src/main/java/myplugin/SampleCommand.java</code> and write your logic:</p>
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode('step2')">Copy</button>
+            <pre class="code-block" id="step2">package myplugin;
+
+import com.cli.Plugin;
+import com.cli.Command;
+import com.cli.ArgParser;
+import com.cli.PlugLogger;
+
+@Command(
+    value       = "greet",
+    version     = "1.0",
+    description = "Prints a personalized greeting",
+    author      = "Your Name",
+    usage       = "greet &lt;name&gt;"
+)
+public class GreetCommand implements Plugin {
+
+    @Override
+    public String getCommand() { return "greet"; }
+
+    @Override
+    public void execute(String[] args) {
+        ArgParser parser = new ArgParser(args);
+        String name = parser.getString(0, "World");
+        PlugLogger.info("Hello, " + name + "! 👋");
+    }
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Build the plugin JAR</h3>
+          <p>Run the included build script — it compiles and packages everything automatically:</p>
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode('step3')">Copy</button>
+            <pre class="code-block" id="step3">cd my-awesome-plugin
+.\build-plugin.ps1
+
+# Output:
+# Compiling plugin code...
+# Creating JAR file...
+# Build successful!</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Run your command</h3>
+          <p>The JAR lands in <code>plugins/</code> and is instantly available:</p>
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode('step4')">Copy</button>
+            <pre class="code-block" id="step4">java -jar plugcli-core-1.1.0.jar greet Akshita
+
+# [2026-04-25 12:00:00] INFO  Hello, Akshita! 👋</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h3>Run it asynchronously</h3>
+          <p>Any command can run in the background — just add <code>--async</code>:</p>
+          <div class="code-wrap">
+            <button class="copy-btn" onclick="copyCode('step5')">Copy</button>
+            <pre class="code-block" id="step5">java -jar plugcli-core-1.1.0.jar greet Akshita --async
+
+# [INFO] Command 'greet' is running in background.</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── API REFERENCE ── -->
+<section id="api" class="section section-dark">
+  <div class="container">
+    <div class="section-label">API Reference</div>
+    <h2 class="section-title">Core <span class="gradient-text">building blocks</span></h2>
+
+    <div class="api-grid">
+
+      <div class="api-card">
+        <div class="api-card-header">
+          <span class="api-type">interface</span>
+          <span class="api-name">Plugin</span>
+        </div>
+        <p>The contract every plugin must implement. Two methods:</p>
+        <pre class="code-block small">public interface Plugin {
+  String getCommand();       // return command name
+  void execute(String[] args); // your logic here
+}</pre>
+      </div>
+
+      <div class="api-card">
+        <div class="api-card-header">
+          <span class="api-type">annotation</span>
+          <span class="api-name">@Command</span>
+        </div>
+        <p>Metadata annotation that registers your command automatically:</p>
+        <pre class="code-block small">@Command(
+  value       = "hello",      // required: command name
+  version     = "1.0",        // optional: defaults to "1.0"
+  description = "Says hello", // optional: shown in help
+  author      = "Akshita",    // optional: shown in conflict table
+  usage       = "hello &lt;name&gt;" // optional: usage hint
+)</pre>
+      </div>
+
+      <div class="api-card">
+        <div class="api-card-header">
+          <span class="api-type">class</span>
+          <span class="api-name">ArgParser</span>
+        </div>
+        <p>Flexible argument parsing utility:</p>
+        <pre class="code-block small">ArgParser p = new ArgParser(args);
+
+p.getString(0)           // positional arg as String
+p.getString(0, "World")  // with default fallback
+p.getInt(0)              // parse as integer
+p.getDouble(0)           // parse as double
+p.getBoolean(0)          // parse as boolean
+p.hasFlag("--verbose")   // check flag presence
+p.getNamed("--name")     // get --name=value
+p.size()                 // total arg count</pre>
+      </div>
+
+      <div class="api-card">
+        <div class="api-card-header">
+          <span class="api-type">class</span>
+          <span class="api-name">PlugLogger</span>
+        </div>
+        <p>ANSI-colored, timestamped logging:</p>
+        <pre class="code-block small">PlugLogger.info("Task complete");    // 🟢 GREEN
+PlugLogger.warn("Disk low");         // 🟡 YELLOW
+PlugLogger.error("Crash!", ex);      // 🔴 RED
+PlugLogger.debug("Loop count: 5");   // 🔵 CYAN (debug mode)
+
+// Enable debug mode:
+// java -jar plugcli.jar myCmd --debug</pre>
+      </div>
+
+      <div class="api-card">
+        <div class="api-card-header">
+          <span class="api-type">class</span>
+          <span class="api-name">HookRegistry</span>
+        </div>
+        <p>Middleware system — run code before/after commands:</p>
+        <pre class="code-block small">HookRegistry hooks = engine.getHookRegistry();
+
+// Run before EVERY command
+hooks.addGlobalBeforeHook(args -&gt; {
+  System.out.println("Started: " + LocalTime.now());
+});
+
+// Run after a SPECIFIC command
+hooks.addAfterHook("backup", args -&gt; {
+  System.out.println("Backup logged to audit trail");
+});</pre>
+      </div>
+
+      <div class="api-card">
+        <div class="api-card-header">
+          <span class="api-type">file</span>
+          <span class="api-name">plugcli.config</span>
+        </div>
+        <p>Define command aliases — no code needed:</p>
+        <pre class="code-block small"># plugcli.config
+# Format: alias = command-name
+
+b     = backup
+t     = test
+greet = hello
+m     = add</pre>
+        <p style="margin-top:0.75rem; font-size:0.82rem; color:var(--text-muted)">Now <code>plugcli b</code> runs the backup command.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── COMMANDS REFERENCE ── -->
+<section id="commands" class="section">
+  <div class="container">
+    <div class="section-label">Built-in Commands</div>
+    <h2 class="section-title">Framework <span class="gradient-text">commands</span></h2>
+    <p class="section-sub">These commands are baked into the PlugCLI framework core — always available.</p>
+
+    <div class="cmd-table-wrap">
+      <table class="cmd-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Usage</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>help</code></td>
+            <td><code>plugcli help</code></td>
+            <td>Lists all registered commands with descriptions, versions, and authors.</td>
+          </tr>
+          <tr>
+            <td><code>init</code></td>
+            <td><code>plugcli init &lt;name&gt;</code></td>
+            <td>Scaffolds a new plugin project — folder structure, sample command, build script, pom.xml.</td>
+          </tr>
+          <tr>
+            <td><code>switch</code></td>
+            <td><code>plugcli switch &lt;cmd&gt;</code></td>
+            <td>When multiple plugins register the same command, lets you switch the active version.</td>
+          </tr>
+          <tr>
+            <td><code>--debug</code></td>
+            <td><code>plugcli &lt;cmd&gt; --debug</code></td>
+            <td>Enables verbose debug logging for any command execution.</td>
+          </tr>
+          <tr>
+            <td><code>--async</code></td>
+            <td><code>plugcli &lt;cmd&gt; --async</code></td>
+            <td>Runs the specified command in a background thread (non-blocking).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLUGIN WORKFLOW ── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-label">Architecture</div>
+    <h2 class="section-title">How PlugCLI <span class="gradient-text">works</span></h2>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <div class="flow-icon">📁</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-label">Drop JAR into <code>plugins/</code></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🔍</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-label">PluginLoader scans all JARs</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🏷️</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-label">@Command annotation found</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">📋</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-label">CommandRegistry stores it</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🪝</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-label">HookRegistry fires before-hooks</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">⚡</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-label">ExecutionEngine runs command</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">✅</div>
+        <div class="flow-label">After-hooks run, done!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAVEN PLUGIN SETUP ── -->
+<section class="section">
+  <div class="container narrow">
+    <div class="section-label">Maven Integration</div>
+    <h2 class="section-title">Auto-deploy plugins<br /><span class="gradient-text">on every build</span></h2>
+    <p class="section-sub">Add this to your plugin's <code>pom.xml</code> so the built JAR is automatically placed in the <code>plugins/</code> folder that PlugCLI reads from.</p>
+    <div class="code-wrap">
+      <button class="copy-btn" onclick="copyCode('maven-build')">Copy</button>
+      <pre class="code-block" id="maven-build">&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.3.0&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;outputDirectory&gt;${project.basedir}/plugins&lt;/outputDirectory&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</pre>
+    </div>
+    <p style="margin-top:1.5rem; color:var(--text-muted); text-align:center">Then just run <code>mvn clean package</code> and your plugin is live. ⚡</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">PlugCLI</span>
+        <span class="badge">v1.1.0</span>
+        <p>A lightweight, extensible Java CLI framework.<br />Built with ❤️ by Akshita.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Docs</h4>
+          <a href="#install">Installation</a>
+          <a href="#quickstart">Quick Start</a>
+          <a href="#api">API Reference</a>
+          <a href="#commands">Commands</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="https://github.com/AKSHITA142/plugCLI" target="_blank">GitHub</a>
+          <a href="https://repo1.maven.org/maven2/io/github/akshita142/plugcli-core/1.1.0/" target="_blank">Maven Central</a>
+          <a href="https://github.com/AKSHITA142/plugCLI/issues" target="_blank">Issues</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Akshita · MIT License</span>
+      <span>Made for developers who love clean CLIs ⚡</span>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
