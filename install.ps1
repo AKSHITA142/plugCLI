@@ -2,26 +2,25 @@
 $ErrorActionPreference = "Stop"
 
 $installDir = "$env:USERPROFILE\.plugcli"
-# We will use the JAR that Maven builds locally!
-$localJarPath = ".\target\plugcli-core-1.0.0.jar"
+# Download directly from Maven Central!
+$mavenUrl = "https://repo1.maven.org/maven2/io/github/akshita142/plugcli-core/1.0.0/plugcli-core-1.0.0.jar"
+$localJarPath = "$installDir\plugcli.jar"
 
-Write-Host "Installing PlugCLI locally..." -ForegroundColor Cyan
+Write-Host "Installing PlugCLI globally..." -ForegroundColor Cyan
 
-# 1. Check if the JAR actually exists
-if (-Not (Test-Path $localJarPath)) {
-    Write-Host "Error: Cannot find $localJarPath!" -ForegroundColor Red
-    Write-Host "Please run 'mvn clean package' first to build the fat JAR." -ForegroundColor Yellow
-    exit
-}
-
-# 2. Create install directory
+# 1. Create install directory
 if (-Not (Test-Path $installDir)) {
     New-Item -ItemType Directory -Path $installDir -Force | Out-Null
 }
 
-# 3. Copy the local JAR to the install folder
-Write-Host "Copying framework to $installDir..."
-Copy-Item -Path $localJarPath -Destination "$installDir\plugcli.jar" -Force
+# 2. Download the JAR from the internet
+Write-Host "Downloading framework from Maven Central..." -ForegroundColor Yellow
+try {
+    Invoke-WebRequest -Uri $mavenUrl -OutFile $localJarPath
+} catch {
+    Write-Host "Error: Failed to download the framework. Check your internet connection." -ForegroundColor Red
+    return
+}
 
 # 4. Create a batch launcher so user can type `plugcli` instead of `java -jar`
 $batchContent = "@echo off`njava -jar `"$installDir\plugcli.jar`" %*"
