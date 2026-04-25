@@ -5,13 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-/*
- * === OOP CONCEPTS USED ===
- * 1. COMPOSITION        → Main "HAS-A" CommandRegistry, PluginLoader, CLIParser, ExecutionEngine —it composes multiple objects to build the application (not inheritance).
- * 2. POLYMORPHISM       → registry.getCommand() returns a Plugin, but the actual object could be AddCommand, HelloCommad, TestPlugin, etc. (runtime polymorphism).
- * 3. FUNCTIONAL INTERFACE (LAMBDA) → Hooks are registered using lambda expressions: args2 -> { ... } — these implement Consumer<String[]> functionally.
- * 4. STATIC METHODS     → main(), printSwitchHint(), handleSwitch() are all static —they belong to the class, not to any instance.
- */
 public class Main {
 
     public static void main(String[] args) {
@@ -30,6 +23,10 @@ public class Main {
         CLIParser parser = new CLIParser();
         ExecutionEngine engine = new ExecutionEngine();
         AsyncEngine asyncEngine = new AsyncEngine();
+        
+        // 1b. Load aliases
+        ConfigLoader config = new ConfigLoader();
+        config.load();
 
         // Register global hooks (these run before/after EVERY command)
         engine.getHookRegistry().addGlobalBeforeHook(args2 -> {
@@ -44,12 +41,15 @@ public class Main {
         loader.loadPlugins(registry);
 
         // 3. Parse input
-        String commandName = parser.getCommandName(args);
+        String rawCommandName = parser.getCommandName(args);
 
-        if (commandName == null) {
+        if (rawCommandName == null) {
             System.out.println("No command provided");
             return;
         }
+
+        // Resolve alias (e.g., "b" -> "backup")
+        String commandName = config.resolveAlias(rawCommandName);
 
         // 3b. Handle init command (scaffolding a new plugin project)
         if (commandName.equals("init")) {

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+
 public class HookRegistry {
 
     // "before" hooks: run BEFORE a command executes

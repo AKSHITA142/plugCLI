@@ -1,5 +1,4 @@
 package com.cli;
-
 public class ArgParser {
 
     private String[] args;

@@ -25,6 +25,8 @@ public class PluginLoader {
 
     // Store ALL discovered plugins (including non-chosen ones) so help can access them
     private Map<String, List<DiscoveredPlugin>> allDiscovered = new HashMap<>();
+    
+    //Stores user choices (which plugin to use if conflict)
     private ConflictConfig conflictConfig = new ConflictConfig();
 
     public void loadPlugins(CommandRegistry registry) {

@@ -11,6 +11,7 @@ import com.cli.ArgParser;
     author = "Akshita",
     usage = "add <number1> <number2> [--verbose]"
 )
+
 public class AddCommand implements Plugin {
 
     @Override

@@ -2,7 +2,6 @@ package com.cli;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class CommandRegistry {
 
     // Stores command-name → Plugin object (for execution)
@@ -29,6 +28,7 @@ public class CommandRegistry {
         return commandMap.containsKey(commandName);
     }
 
+    //print all commands with their metadata
     public void printAllCommands() {
         System.out.println("\n╔══════════════════════════════════════════════════════════════╗");
         System.out.println("║                     AVAILABLE COMMANDS                      ║");
