@@ -48,7 +48,7 @@ function switchTab(btn, id) {
 
 // ── SCROLL REVEAL ──
 const revealEls = document.querySelectorAll(
-  '.feature-card, .step, .api-card, .install-card, .flow-step, .cmd-table'
+  '.feature-card, .step, .api-card, .install-card, .flow-step, .cmd-table, .sonatype-block'
 );
 revealEls.forEach(el => el.classList.add('reveal'));
 
