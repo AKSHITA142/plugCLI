@@ -95,6 +95,18 @@ public class InitCommand {
             + "      <version>1.0.0</version>\n"
             + "    </dependency>\n"
             + "  </dependencies>\n"
+            + "  <build>\n"
+            + "    <plugins>\n"
+            + "      <plugin>\n"
+            + "        <groupId>org.apache.maven.plugins</groupId>\n"
+            + "        <artifactId>maven-jar-plugin</artifactId>\n"
+            + "        <version>3.3.0</version>\n"
+            + "        <configuration>\n"
+            + "          <outputDirectory>${project.basedir}/plugins</outputDirectory>\n"
+            + "        </configuration>\n"
+            + "      </plugin>\n"
+            + "    </plugins>\n"
+            + "  </build>\n"
             + "</project>\n";
     }
 
