@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop"
 
 $installDir = "$env:USERPROFILE\.plugcli"
-$localJarPath = ".\target\plugcli-core-1.0.0.jar"
+$localJarPath = ".\target\plugcli-core-1.1.0.jar"
 
 Write-Host "Installing LATEST PlugCLI locally from your code..." -ForegroundColor Cyan
 
