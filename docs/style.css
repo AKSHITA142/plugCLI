@@ -381,6 +381,78 @@ code {
   transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
+/* ── SONATYPE BLOCK ── */
+.sonatype-block {
+  margin-top: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.22s var(--ease);
+}
+.sonatype-block:hover { border-color: var(--border-lit); }
+
+.sonatype-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+.sonatype-title-row {
+  display: flex; align-items: center; gap: 0.85rem;
+}
+.sonatype-icon { font-size: 1.8rem; }
+.sonatype-title {
+  font-size: 1rem; font-weight: 700; color: var(--text);
+}
+.sonatype-sub {
+  font-size: 0.82rem; color: var(--text-sec); margin-top: 0.15rem;
+}
+.sonatype-link-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--accent); color: #071018;
+  font-weight: 700; font-size: 0.85rem;
+  padding: 0.55rem 1.2rem; border-radius: 7px;
+  text-decoration: none;
+  transition: all 0.2s var(--ease);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(91,155,213,0.25);
+}
+.sonatype-link-btn:hover {
+  background: #7ab8e8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(91,155,213,0.4);
+}
+
+/* Dependency tabs */
+.dep-tabs {
+  display: flex; gap: 0;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
+}
+.dep-tab {
+  background: none; border: none;
+  color: var(--text-sec); font-size: 0.85rem; font-weight: 600;
+  padding: 0.75rem 1rem; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
+  font-family: var(--sans);
+}
+.dep-tab:hover { color: var(--text); }
+.dep-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.dep-panel { display: none; position: relative; }
+.dep-panel.active { display: block; }
+.dep-panel .copy-btn {
+  position: absolute; top: 0.6rem; right: 0.75rem;
+}
+.dep-code {
+  border-radius: 0; padding-top: 2.5rem;
+  background: var(--bg3);
+}
+
 /* ── STEPS ── */
 .steps { display: flex; flex-direction: column; margin-top: 1.5rem; }
 .step {

@@ -36,6 +36,16 @@ document.querySelectorAll('.feature-card[data-color]').forEach(card => {
   card.style.setProperty('--fc-color', card.dataset.color);
 });
 
+// ── DEPENDENCY TAB SWITCHER ──
+function switchTab(btn, id) {
+  // deactivate all tabs and panels
+  btn.closest('.dep-tabs').querySelectorAll('.dep-tab').forEach(t => t.classList.remove('active'));
+  btn.closest('.sonatype-block').querySelectorAll('.dep-panel').forEach(p => p.classList.remove('active'));
+  // activate clicked
+  btn.classList.add('active');
+  document.getElementById('dep-' + id).classList.add('active');
+}
+
 // ── SCROLL REVEAL ──
 const revealEls = document.querySelectorAll(
   '.feature-card, .step, .api-card, .install-card, .flow-step, .cmd-table'

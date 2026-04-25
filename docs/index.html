@@ -99,18 +99,60 @@
       <pre class="code-block" id="verify-cmd">plugcli help</pre>
     </div>
 
-    <div class="install-card">
-      <div class="install-header">
-        <span class="install-step">Step 3 — Or add as Maven dependency</span>
-        <button class="copy-btn" onclick="copyCode('maven-dep')">Copy</button>
+    <!-- ── SONATYPE / MAVEN CENTRAL ── -->
+    <div class="sonatype-block reveal">
+      <div class="sonatype-header">
+        <div class="sonatype-title-row">
+          <span class="sonatype-icon">📦</span>
+          <div>
+            <div class="sonatype-title">Available on Maven Central</div>
+            <div class="sonatype-sub">Add PlugCLI as a dependency in Maven, Gradle, or SBT</div>
+          </div>
+        </div>
+        <a href="https://central.sonatype.com/artifact/io.github.akshita142/plugcli-core/1.1.0"
+           target="_blank" class="sonatype-link-btn">
+          View on Sonatype ↗
+        </a>
       </div>
-      <pre class="code-block" id="maven-dep">&lt;dependency&gt;
+
+      <!-- Tab switcher -->
+      <div class="dep-tabs">
+        <button class="dep-tab active" onclick="switchTab(this,'maven')">Maven</button>
+        <button class="dep-tab" onclick="switchTab(this,'gradle')">Gradle</button>
+        <button class="dep-tab" onclick="switchTab(this,'gradle-kt')">Gradle (Kotlin)</button>
+        <button class="dep-tab" onclick="switchTab(this,'sbt')">SBT</button>
+      </div>
+
+      <div class="dep-panel active" id="dep-maven">
+        <button class="copy-btn" onclick="copyCode('snip-maven')">Copy</button>
+        <pre class="code-block dep-code" id="snip-maven">&lt;dependency&gt;
   &lt;groupId&gt;io.github.akshita142&lt;/groupId&gt;
   &lt;artifactId&gt;plugcli-core&lt;/artifactId&gt;
   &lt;version&gt;1.1.0&lt;/version&gt;
   &lt;scope&gt;provided&lt;/scope&gt;
 &lt;/dependency&gt;</pre>
+      </div>
+
+      <div class="dep-panel" id="dep-gradle">
+        <button class="copy-btn" onclick="copyCode('snip-gradle')">Copy</button>
+        <pre class="code-block dep-code" id="snip-gradle">dependencies {
+    compileOnly 'io.github.akshita142:plugcli-core:1.1.0'
+}</pre>
+      </div>
+
+      <div class="dep-panel" id="dep-gradle-kt">
+        <button class="copy-btn" onclick="copyCode('snip-gradle-kt')">Copy</button>
+        <pre class="code-block dep-code" id="snip-gradle-kt">dependencies {
+    compileOnly("io.github.akshita142:plugcli-core:1.1.0")
+}</pre>
+      </div>
+
+      <div class="dep-panel" id="dep-sbt">
+        <button class="copy-btn" onclick="copyCode('snip-sbt')">Copy</button>
+        <pre class="code-block dep-code" id="snip-sbt">libraryDependencies += "io.github.akshita142" % "plugcli-core" % "1.1.0" % "provided"</pre>
+      </div>
     </div>
+
   </div>
 </section>
 
