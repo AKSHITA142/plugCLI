@@ -158,7 +158,7 @@ public class InitCommand {
                 + "```\n\n"
                 + "## Run\n"
                 + "```powershell\n"
-                + "java -jar " + FRAMEWORK_JAR + " sample YourName\n"
+                + "plugcli " + FRAMEWORK_JAR + " sample YourName\n"
                 + "```\n\n"
                 + "## Available commands\n"
                 + "```powershell\n"
