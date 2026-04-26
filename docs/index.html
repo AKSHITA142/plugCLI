@@ -80,8 +80,10 @@
 <section id="install" class="section">
   <div class="container">
     <div class="section-label">Installation</div>
-    <h2 class="section-title">Up and running in <span class="gradient-text">30 seconds</span></h2>
-    <p class="section-sub">One PowerShell command downloads the JAR from Maven Central and adds it to your PATH.</p>
+    <h2 class="section-title">Two ways to <span class="gradient-text">get started</span></h2>
+    <p class="section-sub">Choose Method 1 to install the global CLI tool, or Method 2 to add it as a standard Java library dependency.</p>
+    
+    <h3 style="color:white; margin-bottom: 1rem;">Method 1: Global Installation (Recommended)</h3>
 
     <div class="install-card">
       <div class="install-header">
@@ -105,8 +107,9 @@
         <div class="sonatype-title-row">
           <span class="sonatype-icon">📦</span>
           <div>
-            <div class="sonatype-title">Available on Maven Central</div>
-            <div class="sonatype-sub">Add PlugCLI as a dependency in Maven, Gradle, or SBT</div>
+            <h3 style="color:white; margin: 0; padding-top: 15px;">Method 2: As a Java Library</h3>
+            <div class="sonatype-title" style="margin-top: 5px;">Available on Maven Central</div>
+            <div class="sonatype-sub">Add PlugCLI directly to your existing project without installing the global CLI.</div>
           </div>
         </div>
         <a href="https://search.maven.org/artifact/io.github.akshita142/plugcli-core"
@@ -270,10 +273,14 @@
         <div class="step-num">01</div>
         <div class="step-content">
           <h3>Scaffold a new plugin project</h3>
-          <p>After installing PlugCLI, navigate to any empty folder and run:</p>
+          <p>After installing PlugCLI, you have two ways to generate a project:</p>
           <div class="code-wrap">
             <button class="copy-btn" onclick="copyCode('step1')">Copy</button>
-            <pre class="code-block" id="step1">plugcli init my-awesome-plugin</pre>
+            <pre class="code-block" id="step1"># Option A: Create a new folder automatically
+plugcli init my-awesome-plugin
+
+# Option B: Scaffold directly in your current folder
+plugcli init .</pre>
           </div>
           <p class="step-note">This creates the entire folder structure, a sample command, build script, and README instantly.</p>
         </div>
