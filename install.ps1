@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 $installDir = "$env:USERPROFILE\.plugcli"
 # Download directly from Maven Central!
-$mavenUrl = "https://repo1.maven.org/maven2/io/github/akshita142/plugcli-core/1.2.1/plugcli-core-1.2.1.jar"
+$mavenUrl = "https://repo1.maven.org/maven2/io/github/akshita142/plugcli-core/1.2.2/plugcli-core-1.2.2.jar"
 $localJarPath = "$installDir\plugcli.jar"
 
 Write-Host "Installing PlugCLI globally..." -ForegroundColor Cyan

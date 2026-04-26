@@ -11,44 +11,59 @@ import java.util.List;
 
 public class InitCommand {
 
-    private static final String FRAMEWORK_JAR = "plugcli-core-1.2.1.jar";
+    private static final String FRAMEWORK_JAR = "plugcli-core-1.2.2.jar";
 
     public void execute(String projectName) {
-        System.out.println("Scaffolding new PlugCLI plugin project: " + projectName);
+        String baseDir;
+        String artifactName;
+
+        if (".".equals(projectName)) {
+            baseDir = "";
+            artifactName = new File("").getAbsoluteFile().getName();
+            System.out.println("Scaffolding new PlugCLI plugin project in current directory...");
+        } else {
+            baseDir = projectName + "/";
+            artifactName = projectName;
+            System.out.println("Scaffolding new PlugCLI plugin project: " + projectName);
+        }
 
         // Create directory structure
-        new File(projectName + "/src/main/java/myplugin").mkdirs();
-        new File(projectName + "/plugins").mkdirs();
+        new File(baseDir + "src/main/java/myplugin").mkdirs();
+        new File(baseDir + "plugins").mkdirs();
 
         // Copy the framework JAR into the new project
-        copyFrameworkJar(projectName);
+        copyFrameworkJar(baseDir);
 
         // Generate pom.xml
-        writeFile(projectName + "/pom.xml", generatePom(projectName));
+        writeFile(baseDir + "pom.xml", generatePom(artifactName));
 
         // Generate sample command
-        writeFile(projectName + "/src/main/java/myplugin/SampleCommand.java",
+        writeFile(baseDir + "src/main/java/myplugin/SampleCommand.java",
                 generateSampleCommand());
 
         // Generate README
-        writeFile(projectName + "/README.md", generateReadme(projectName));
+        writeFile(baseDir + "README.md", generateReadme(artifactName));
 
         // Generate build script
-        writeFile(projectName + "/build-plugin.ps1", generateBuildScript());
+        writeFile(baseDir + "build-plugin.ps1", generateBuildScript());
 
-        System.out.println("\n✅ Project '" + projectName + "' created successfully!");
+        System.out.println("\n✅ Project '" + artifactName + "' created successfully!");
         System.out.println("\nNext steps:");
-        System.out.println("  1. cd " + projectName);
-        System.out.println("  2. Edit src/main/java/myplugin/SampleCommand.java");
-        System.out.println("  3. Run: .\\build-plugin.ps1");
-        System.out.println("  4. Run: plugcli sample YourName");
+        
+        int step = 1;
+        if (!".".equals(projectName)) {
+            System.out.println("  " + (step++) + ". cd " + projectName);
+        }
+        System.out.println("  " + (step++) + ". Edit src/main/java/myplugin/SampleCommand.java");
+        System.out.println("  " + (step++) + ". Run: .\\build-plugin.ps1");
+        System.out.println("  " + (step++) + ". Run: plugcli sample YourName");
     }
 
     /**
      * Copies the framework JAR into the new project folder so
      * the project is completely self-contained.
      */
-    private void copyFrameworkJar(String projectName) {
+    private void copyFrameworkJar(String baseDir) {
         List<String> possiblePaths = new ArrayList<>();
 
         // 1. Global install location (Windows/Linux/Mac)
@@ -74,8 +89,8 @@ public class InitCommand {
             File source = new File(path);
             if (source.exists()) {
                 try {
-                    Path dest = Path.of(projectName, FRAMEWORK_JAR);
-                    Files.copy(source.toPath(), dest, StandardCopyOption.REPLACE_EXISTING);
+                    File destFile = new File(baseDir + FRAMEWORK_JAR);
+                    Files.copy(source.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     System.out.println("  Copied: " + FRAMEWORK_JAR + " (framework)");
                     return;
                 } catch (IOException e) {
