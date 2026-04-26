@@ -536,37 +536,37 @@ m     = add</pre>
     <div class="flow-grid">
       <div class="flow-step">
         <div class="flow-icon">📁</div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-label">Drop JAR into <code>plugins/</code></div>
+        <div class="flow-label">Drop JAR into<br/><code>plugins/</code></div>
       </div>
+      <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">🔍</div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-label">PluginLoader scans all JARs</div>
+        <div class="flow-label">PluginLoader<br/>scans JARs</div>
       </div>
+      <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">🏷️</div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-label">@Command annotation found</div>
+        <div class="flow-label">@Command<br/>found</div>
       </div>
+      <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">📋</div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-label">CommandRegistry stores it</div>
+        <div class="flow-label">Registry<br/>stores it</div>
       </div>
+      <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">🪝</div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-label">HookRegistry fires before-hooks</div>
+        <div class="flow-label">Before-hooks<br/>fire</div>
       </div>
+      <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">⚡</div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-label">ExecutionEngine runs command</div>
+        <div class="flow-label">Engine runs<br/>command</div>
       </div>
+      <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">✅</div>
-        <div class="flow-label">After-hooks run, done!</div>
+        <div class="flow-label">After-hooks<br/>run</div>
       </div>
     </div>
   </div>
