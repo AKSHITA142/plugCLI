@@ -11,7 +11,7 @@ import java.util.List;
 
 public class InitCommand {
 
-    private static final String FRAMEWORK_JAR = "plugcli-core-1.2.0.jar";
+    private static final String FRAMEWORK_JAR = "plugcli-core-1.2.1.jar";
 
     public void execute(String projectName) {
         System.out.println("Scaffolding new PlugCLI plugin project: " + projectName);
@@ -41,7 +41,7 @@ public class InitCommand {
         System.out.println("  1. cd " + projectName);
         System.out.println("  2. Edit src/main/java/myplugin/SampleCommand.java");
         System.out.println("  3. Run: .\\build-plugin.ps1");
-        System.out.println("  4. Run: java -jar " + FRAMEWORK_JAR + " sample YourName");
+        System.out.println("  4. Run: plugcli sample YourName");
     }
 
     /**
@@ -158,11 +158,11 @@ public class InitCommand {
                 + "```\n\n"
                 + "## Run\n"
                 + "```powershell\n"
-                + "plugcli " + FRAMEWORK_JAR + " sample YourName\n"
+                + "plugcli sample YourName\n"
                 + "```\n\n"
                 + "## Available commands\n"
                 + "```powershell\n"
-                + "java -jar " + FRAMEWORK_JAR + " help\n"
+                + "plugcli help\n"
                 + "```\n";
     }
 
@@ -198,7 +198,7 @@ public class InitCommand {
                 + "    & \"C:\\Program Files\\Java\\jdk-21\\bin\\jar.exe\" cvf "
                 + "plugins/myplugin.jar -C out_plugin .\n"
                 + "    Write-Host \"`nBuild successful!\" -ForegroundColor Green\n"
-                + "    Write-Host \"Run: java -jar " + FRAMEWORK_JAR + " sample YourName\" "
+                + "    Write-Host \"Run: plugcli sample YourName\" "
                 + "-ForegroundColor Cyan\n"
                 + "} else {\n"
                 + "    Write-Host \"No Java files found in src/\" -ForegroundColor Red\n"
