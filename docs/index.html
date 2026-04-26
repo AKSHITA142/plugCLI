@@ -348,7 +348,7 @@ public class GreetCommand implements Plugin {
           <p>The JAR lands in <code>plugins/</code> and is instantly available:</p>
           <div class="code-wrap">
             <button class="copy-btn" onclick="copyCode('step4')">Copy</button>
-            <pre class="code-block" id="step4">java -jar plugcli-core-1.1.0.jar greet Akshita
+            <pre class="code-block" id="step4">plugcli greet Akshita
 
 # [2026-04-25 12:00:00] INFO  Hello, Akshita! 👋</pre>
           </div>
@@ -362,7 +362,7 @@ public class GreetCommand implements Plugin {
           <p>Any command can run in the background — just add <code>--async</code>:</p>
           <div class="code-wrap">
             <button class="copy-btn" onclick="copyCode('step5')">Copy</button>
-            <pre class="code-block" id="step5">java -jar plugcli-core-1.1.0.jar greet Akshita --async
+            <pre class="code-block" id="step5">plugcli greet Akshita --async
 
 # [INFO] Command 'greet' is running in background.</pre>
           </div>
