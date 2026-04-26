@@ -597,6 +597,42 @@ m     = add</pre>
   </div>
 </section>
 
+<!-- ── CLI REFERENCE ── -->
+<section id="reference" class="section" style="background:var(--bg-card); border-top:1px solid var(--border);">
+  <div class="container narrow">
+    <div class="section-label">Reference</div>
+    <h2 class="section-title">Built-in <span class="gradient-text">Commands & Flags</span></h2>
+    <p class="section-sub">PlugCLI comes with powerful global commands and flags available out of the box.</p>
+    
+    <div style="display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem;">
+      <div style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+        <code style="font-size:1.1rem; color:var(--primary); background:rgba(91,155,213,0.1); padding:0.2rem 0.5rem; border-radius:4px;">plugcli help</code>
+        <p style="margin-top:0.8rem; color:var(--text-muted); line-height:1.6;">Lists all registered commands currently available in your <code>plugins/</code> folder, along with their descriptions and authors.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+        <code style="font-size:1.1rem; color:var(--primary); background:rgba(91,155,213,0.1); padding:0.2rem 0.5rem; border-radius:4px;">plugcli init &lt;name&gt;</code> <span style="color:#666; margin:0 10px;">or</span> <code style="font-size:1.1rem; color:var(--primary); background:rgba(91,155,213,0.1); padding:0.2rem 0.5rem; border-radius:4px;">plugcli init .</code>
+        <p style="margin-top:0.8rem; color:var(--text-muted); line-height:1.6;">Scaffolds a complete, ready-to-build plugin project. Use <code>.</code> to scaffold directly in the current directory.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+        <code style="font-size:1.1rem; color:var(--primary); background:rgba(91,155,213,0.1); padding:0.2rem 0.5rem; border-radius:4px;">plugcli switch &lt;command&gt;</code>
+        <p style="margin-top:0.8rem; color:var(--text-muted); line-height:1.6;">If multiple plugins register the exact same command, this lets you choose which version should be executed by default.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+        <code style="font-size:1.1rem; color:#f59e0b; background:rgba(245,158,11,0.1); padding:0.2rem 0.5rem; border-radius:4px;">--async</code>
+        <p style="margin-top:0.8rem; color:var(--text-muted); line-height:1.6;">Append this global flag to <strong>any</strong> command to execute it in a background thread instantly. (e.g., <code>plugcli greet --async</code>).</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03); padding:1.5rem; border-radius:12px; border:1px solid var(--border);">
+        <code style="font-size:1.1rem; color:#bf5af2; background:rgba(191,90,242,0.1); padding:0.2rem 0.5rem; border-radius:4px;">--debug</code>
+        <p style="margin-top:0.8rem; color:var(--text-muted); line-height:1.6;">Append this global flag to enable verbose framework logging, perfect for tracking down plugin loading issues.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── FOOTER ── -->
 <footer class="footer">
   <div class="container">
