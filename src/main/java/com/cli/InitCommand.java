@@ -11,7 +11,7 @@ import java.util.List;
 
 public class InitCommand {
 
-    private static final String FRAMEWORK_JAR = "plugcli-core-1.2.2.jar";
+    private static final String FRAMEWORK_JAR = "plugcli-core-1.2.3.jar";
 
     public void execute(String projectName) {
         String baseDir;
@@ -223,7 +223,9 @@ public class InitCommand {
     private void writeFile(String path, String content) {
         try {
             File file = new File(path);
-            file.getParentFile().mkdirs();
+            if (file.getParentFile() != null) {
+                file.getParentFile().mkdirs();
+            }
             FileWriter writer = new FileWriter(file);
             writer.write(content);
             writer.close();
