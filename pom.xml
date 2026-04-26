@@ -8,7 +8,7 @@
     <!-- YOUR FRAMEWORK IDENTITY (like a passport) -->
     <groupId>io.github.akshita142</groupId>           <!-- Your organization/domain -->
     <artifactId>plugcli-core</artifactId>     <!-- The library name -->
-    <version>1.1.0</version>                  <!-- Current version -->
+    <version>1.2.0</version>                  <!-- Current version -->
     <packaging>jar</packaging>
 
     <!-- Human-readable info -->
