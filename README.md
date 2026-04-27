@@ -1,48 +1,107 @@
-# PlugCLI 🚀
+<h1 align="center">PlugCLI 🚀</h1>
 
-A lightweight, extensible, and dynamic Command Line Interface (CLI) framework for Java. 
-PlugCLI allows developers to easily build modular CLI commands that are loaded dynamically at runtime.
+<p align="center">
+  <em>A lightweight, extensible, and dynamic Command Line Interface (CLI) framework for Java.</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21+-orange.svg" alt="Java 21" />
+  <img src="https://img.shields.io/badge/Maven-Central-blue.svg" alt="Maven Central" />
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" />
+</p>
 
 ---
 
-## 💻 1. Installing PlugCLI (For End Users)
+## 👋 Welcome to PlugCLI!
 
-If you just want to use the framework on your Windows machine, open your PowerShell terminal and run:
+**PlugCLI** is a developer-friendly framework that makes building Java CLI applications incredibly easy. Instead of writing one massive file for all your commands, PlugCLI allows you to write isolated **Plugins**. These plugins are compiled into `.jar` files and loaded dynamically at runtime, keeping your project organized, modular, and easy to maintain.
+
+Whether you're building a simple automation script or a complex developer tool, PlugCLI has you covered!
+
+---
+
+## ✨ Features
+
+- **🧩 Dynamic Plugin Loading:** Drop a new plugin JAR into the `plugins/` folder and PlugCLI instantly recognizes it.
+- **⚡ Quick Scaffolding:** Use `plugcli init <name>` to generate a ready-to-code plugin template in seconds.
+- **🪝 Middleware Hooks:** Run custom code *before* and *after* commands execute (perfect for logging, authentication, or setup).
+- **🛠️ Annotation-Based:** Simply use `@Command` to define your CLI commands. No complex routing required!
+
+---
+
+## 🚀 Quick Start (For End Users)
+
+Just want to use the framework on your Windows machine? Let's get it installed!
+
+1. Open your **PowerShell** terminal.
+2. Run the following installation command:
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/AKSHITA142/plugCLI/main/install.ps1 | iex
 ```
-*After running, restart your terminal and type `plugcli help`.*
+
+3. **Restart your terminal.**
+4. Verify the installation by typing:
+
+```powershell
+plugcli help
+```
 
 ---
 
-## 🛠️ 2. Building Plugins (For Developers)
+## 🛠️ Creating Your First Plugin (For Developers)
 
-Want to create your own commands for PlugCLI? It is incredibly easy!
+Ready to write your own commands? PlugCLI makes it fast and easy.
 
-### Option A: The Fast Way (Scaffolding)
-If you already have PlugCLI installed, simply navigate to an empty folder and run:
+### Option 1: The Fast Way (Scaffolding)
+
+If you have PlugCLI installed globally, you can generate a new project structure instantly.
+
+1. Navigate to an empty folder in your terminal.
+2. Run the initialization command:
+
 ```powershell
-plugcli init my-new-plugin
+plugcli init my-first-plugin
 ```
-This will automatically generate the folder structure, a sample command, and the `build-plugin.ps1` script!
+*(You can also use `plugcli init .` to initialize in the current directory!)*
 
-### Option B: The Maven Way (Enterprise)
-If you are building a complex plugin and want to use Maven, add PlugCLI as a dependency in your `pom.xml`:
+3. This will generate a complete project structure, including a sample `HelloCommand` and a `build-plugin.ps1` script.
+4. Modify the generated Java file, then run `./build-plugin.ps1` to compile it. Your new command is ready!
+
+### Option 2: The Maven Way (Manual Setup)
+
+If you are integrating PlugCLI into an existing project or prefer manual Maven setup, simply add it as a dependency in your `pom.xml`:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>io.github.akshita142</groupId>
         <artifactId>plugcli-core</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.3</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
 ```
 
-**Automate the JAR output:**
-To ensure your plugin is automatically saved into the `plugins/` directory so PlugCLI can find it, add this to your `<build>` section:
+**Writing the Code:**
+Create a Java class, implement the `Plugin` interface, and add the `@Command` annotation!
+
+```java
+import com.cli.Plugin;
+import com.cli.Command;
+import com.cli.PlugLogger;
+
+@Command(value = "hello", description = "Prints a friendly greeting")
+public class HelloCommand implements Plugin {
+    @Override
+    public void execute(String[] args) {
+        PlugLogger.info("Hello from my custom PlugCLI plugin!");
+    }
+}
+```
+
+**Automate the Build:**
+Add this to your `pom.xml` to automatically place compiled JARs in the `plugins/` directory:
 
 ```xml
 <build>
@@ -58,21 +117,37 @@ To ensure your plugin is automatically saved into the `plugins/` directory so Pl
     </plugins>
 </build>
 ```
+Compile using `mvn clean package`, and your command is instantly available!
 
-### Writing Your First Plugin
-Just create a Java class that implements `Plugin` and use the `@Command` annotation!
+---
+
+## 🪝 Advanced: Using Hooks
+
+PlugCLI supports **Hooks**, which act like middleware. You can define logic that runs globally before or after commands are executed.
 
 ```java
-import com.cli.Plugin;
-import com.cli.Command;
+import com.cli.hooks.Hook;
 import com.cli.PlugLogger;
 
-@Command(value = "hello", description = "Prints a greeting")
-public class HelloCommand implements Plugin {
+public class MyLoggerHook implements Hook {
     @Override
-    public void execute(String[] args) {
-        PlugLogger.info("Hello from my custom plugin!");
+    public void beforeExecution(String commandName, String[] args) {
+        PlugLogger.info("Starting command: " + commandName);
+    }
+
+    @Override
+    public void afterExecution(String commandName, boolean success) {
+        PlugLogger.info("Command finished successfully? " + success);
     }
 }
 ```
-Compile using `mvn clean package` and run `plugcli hello`!
+
+---
+
+## 🤝 Contributing
+
+Contributions are always welcome! Feel free to open an issue or submit a pull request if you have ideas on how to make PlugCLI even better.
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
