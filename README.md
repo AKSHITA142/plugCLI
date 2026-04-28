@@ -1,4 +1,7 @@
-<h1 align="center">PlugCLI 🚀</h1>
+<h1 align="center">
+  <img src="docs/logo.png" alt="PlugCLI Logo" width="50" style="vertical-align: middle; border-radius: 12px; margin-right: 10px; box-shadow: 0 4px 12px rgba(91,155,213,0.3);" />
+  PlugCLI 🚀
+</h1>
 
 <p align="center">
   <em>A lightweight, extensible, and dynamic Command Line Interface (CLI) framework for Java.</em>
