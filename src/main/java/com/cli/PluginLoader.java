@@ -49,6 +49,7 @@ public class PluginLoader {
         for (File file : files) {
             try {
                 URL[] urls = { file.toURI().toURL() };
+                @SuppressWarnings("resource")
                 URLClassLoader classLoader = new URLClassLoader(urls);
 
                 JarFile jarFile = new JarFile(file);
