@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="docs/logo.png" alt="PlugCLI Logo" width="50" style="vertical-align: middle; border-radius: 12px; margin-right: 10px; box-shadow: 0 4px 12px rgba(91,155,213,0.3);" />
+  <img src="docs/logo.webp" alt="PlugCLI Logo" width="50" style="vertical-align: middle; border-radius: 12px; margin-right: 10px; box-shadow: 0 4px 12px rgba(91,155,213,0.3);" />
   PlugCLI 🚀
 </h1>
 
